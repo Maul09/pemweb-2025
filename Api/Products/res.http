@@ -1,0 +1,11 @@
+reference
+
+@baseUr1 = http://pemweb.test/api
+reference
+
+@cType = application/json
+
+### Get all products
+
+GET {{ baseUr1}/products
+Contet-Type: {{Type}}}
