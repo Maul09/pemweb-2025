@@ -26,10 +26,28 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
                     ->prefix('$'),
+
+                Forms\Components\TextInput::make('size')
+                    ->required()
+                    ->maxLength(10),
+
+                Forms\Components\TextInput::make('color')
+                    ->required()
+                    ->maxLength(50),
+
+                Forms\Components\TextInput::make('stock')
+                    ->required()
+                    ->numeric(),
+
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->directory('jerseys')
+                    ->nullable(),
             ]);
     }
 
@@ -39,13 +57,29 @@ class ProductResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('price')
                     ->money()
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('size')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('color')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('stock')
+                    ->sortable(),
+
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Image')
+                    ->circular(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
